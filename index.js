@@ -1,4 +1,4 @@
-﻿/* ///
+/* ///
 /// B1. Create "project"
 /// 	npm  init  -y
 /// B2. INSTALL
@@ -27,7 +27,7 @@ app.set('view engine', 'ejs');
 /// 					 		Config
 /// ................................................................
 /// Tham số
-app.listen( process.env.PORT || 8080);
+const PORT = process.env.PORT || 8080;
 /// ------------------ Khai bao cac Folder Tĩnh, Session, Cookies
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -118,6 +118,9 @@ app.use('/session', sessionControl );
 /// 						RUNNING SERVER
 /// ................................................................
 
-
-
+app.listen( PORT, 
+    () => {
+        console.log("\n\n--------- Server running ! PORT: ", PORT);
+    }
+);
 
