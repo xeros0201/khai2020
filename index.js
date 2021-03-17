@@ -5,7 +5,7 @@
 /// 	npm install express  body-parser  cookie-parser multer ejs mongodb mongoose  express-session cookie-session qrcode  qrcode-svg uuid session-file-store  --save
 /// B3. RUN - server
 /// 	node   index.js
-*/// 	
+*///
 
 /// ................................................................
 /// 					 Khai báo LIB Thêm Vào để sử dụng
@@ -27,7 +27,8 @@ app.set('view engine', 'ejs');
 /// 					 		Config
 /// ................................................................
 /// Tham số
-const PORT = process.env.PORT || 8080;
+app.listen(process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000;
 /// ------------------ Khai bao cac Folder Tĩnh, Session, Cookies
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -50,12 +51,12 @@ var sessOptions = {
         maxAge: 60000,
     }
 }
-   
+
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1); // trust first proxy
     sess.cookie.secure = true; // serve secure cookies
 }
-   
+
 app.use(session( sessOptions ));
 
 
@@ -65,8 +66,8 @@ app.use(function sessionLog (req, res, next) {
 
     //req.sessionOptions.maxAge = req.session.maxAge || req.sessionOptions.maxAge;
 
-    console.log('\n\t REQ: ', 
-    req.session, 
+    console.log('\n\t REQ: ',
+    req.session,
     req.sessionID,
     Date().toString());
     next();
@@ -118,9 +119,8 @@ app.use('/session', sessionControl );
 /// 						RUNNING SERVER
 /// ................................................................
 
-app.listen( PORT, 
+app.listen( PORT,
     () => {
         console.log("\n\n--------- Server running ! PORT: ", PORT);
     }
 );
-
