@@ -1,0 +1,59 @@
+<html>
+  <head>   
+    <%- include('./layout/head'); %> 
+  </head>
+
+  <body>
+  
+  <%- include('./layout/header'); %> 
+  <main role="main">
+  <div class="container">
+    <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Order</h1>
+      <div id="left-column">
+        <form>
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname">
+        </form>
+        <form>
+            <label for="fname">Last Name</label>
+            <input type="text" id="lname" name="lname">
+        </form>
+        <form>
+            <label for="fname">Phone number</label>
+            <input type="number" id="Phone" name="Phone">
+        </form>
+        <form>
+            <label for="fname">Email</label>
+            <input type="email" id="email" name="email">
+        </form>
+        <form>
+            <label for="fname">Address</label>
+            <input type="text" id="address" name="address">
+        </form>
+
+        <tr>
+            <td>Payment:<br></td>
+            <td><label>Cash</label><input type="radio" name="payment"></td>
+            <td><label>Credit card</label><input type="radio" name="payment"></td>
+            <td><label>Debit card</label><input type="radio" name="payment"></td></td>
+        </tr>
+        <button type="submit">Confirm</button>
+    </div>
+    <div id="right-column">
+        {% for product_id, product in cart %}
+
+        <p>{{product.Product}}</p>
+        <p>{{product.Price}}</p>
+
+        {% endfor %}
+    </div>
+    
+    </div>
+  </div>
+  </main>
+
+  </body>
+
+</html>
