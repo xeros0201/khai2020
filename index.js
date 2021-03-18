@@ -1,40 +1,24 @@
-﻿/* ///
-/// B1. Create "project"
-/// 	npm  init  -y
-/// B2. INSTALL
-/// 	npm install express  body-parser  cookie-parser multer ejs mongodb mongoose  express-session cookie-session qrcode  qrcode-svg uuid session-file-store  --save
-/// B3. RUN - server
-/// 	node   index.js
-*///
+﻿
 
-/// ................................................................
-/// 					 Khai báo LIB Thêm Vào để sử dụng
-/// ................................................................
 var express = require('express');
 var router = express.Router();
 var path = require('path');
 var app = express();
 var bodyParser = require('body-parser');
 
-/// ................................................................
-/// 					 		Engine EJS
-/// ................................................................
+
 app.set('views', path.join( __dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-/// ................................................................
-/// 					 		Config
-/// ................................................................
-/// Tham số
 
 var PORT = process.env.PORT || 3000;
-/// ------------------ Khai bao cac Folder Tĩnh, Session, Cookies
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-/*--- SERVER: Session + Cookies ---*/
+
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var uuid = require('uuid');
@@ -61,7 +45,7 @@ app.use(session( sessOptions ));
 
 
 
-/// --- Code SESSION
+
 app.use(function sessionLog (req, res, next) {
 
     //req.sessionOptions.maxAge = req.session.maxAge || req.sessionOptions.maxAge;
@@ -75,10 +59,6 @@ app.use(function sessionLog (req, res, next) {
 
 
 
-/// ................................................................
-/// 						ROUTer - ROUTing
-/// ................................................................
-/*--- Home ---*/
 var homeControl = require('./controllers/homeController');
 app.get( '/', homeControl );
 
@@ -103,9 +83,7 @@ app.use('/report', reportControl );
 var qrcodeControl = require('./controllers/qrcodeController');
 app.use('/qr', qrcodeControl );
 
-/// ----------------------------------
-/// Để xem các chức năng
-/// ----------------------------------
+
 /*--- User ---*/
 var userControl = require('./controllers/userController');
 app.use('/user', userControl );
@@ -115,12 +93,6 @@ var sessionControl = require('./controllers/sessionController');
 app.use('/session', sessionControl );
 
 
-/// ................................................................
-/// 						RUNNING SERVER
-/// ................................................................
 
-app.listen( PORT,
-    () => {
-        console.log("\n\n--------- Server running ! PORT: ", PORT);
-    }
-);
+
+app.listen( PORT);
